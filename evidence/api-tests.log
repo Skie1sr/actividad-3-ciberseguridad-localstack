@@ -1,0 +1,13 @@
+PASS | Health público                     | esperado 200 | obtenido 200
+PASS | Sin token                          | esperado 401 | obtenido 401
+PASS | Token mal formado                  | esperado 401 | obtenido 401
+PASS | Firma alterada                     | esperado 401 | obtenido 401
+PASS | Token vencido                      | esperado 401 | obtenido 401
+PASS | Emisor incorrecto                  | esperado 401 | obtenido 401
+PASS | Audiencia incorrecta               | esperado 401 | obtenido 401
+PASS | Algoritmo none                     | esperado 401 | obtenido 401
+PASS | Usuario sin permiso admin          | esperado 403 | obtenido 403
+PASS | Usuario con perfil permitido       | esperado 200 | obtenido 200
+PASS | Administrador válido               | esperado 200 | obtenido 200
+PASS | Escalamiento por role en login     | esperado 403 | obtenido 403
+PASS | Contraseña incorrecta              | esperado 401 | obtenido 401

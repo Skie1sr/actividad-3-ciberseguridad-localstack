@@ -1,0 +1,81 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API segura de laboratorio",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://api:3000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "/health",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Token invalid"
+          },
+          "403": {
+            "description": "Role denied"
+          }
+        }
+      }
+    },
+    "/api/profile": {
+      "get": {
+        "summary": "/api/profile",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Token invalid"
+          },
+          "403": {
+            "description": "Role denied"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/admin": {
+      "get": {
+        "summary": "/api/admin",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Token invalid"
+          },
+          "403": {
+            "description": "Role denied"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+ Image actividad3-api:secure Building 
+ Image actividad3-api:secure Building 
+Sending build context to Docker daemon  11.17kB
+Step 1/10 : FROM node:24-alpine
+ ---> a34ab6d7f6f4
+Step 2/10 : ENV NODE_ENV=production
+ ---> Running in 97073a2d5e8c
+ ---> Removed intermediate container 97073a2d5e8c
+ ---> 18638f6d1bd5
+Step 3/10 : WORKDIR /app
+ ---> Running in 2c5ee3d8719e
+ ---> Removed intermediate container 2c5ee3d8719e
+ ---> 6e30132233ae
+Step 4/10 : COPY package*.json ./
+ ---> 80e1b7aa2382
+Step 5/10 : RUN npm ci --omit=dev && npm cache clean --force
+ ---> Running in 773c2adecacd
+
+added 83 packages, and audited 84 packages in 2s
+
+19 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[91mnpm notice
+npm notice New major version of npm available! 11.19.1 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+[0m[91mnpm warn using --force Recommended protections disabled.
+[0m ---> Removed intermediate container 773c2adecacd
+ ---> 1dcfce2b58dc
+Step 6/10 : COPY --chown=node:node server.js ./
+ ---> 654b3ee798f0
+Step 7/10 : USER node
+ ---> Running in 9c5fda6e9090
+ ---> Removed intermediate container 9c5fda6e9090
+ ---> 6d9836b406d5
+Step 8/10 : EXPOSE 3000
+ ---> Running in 1acee25529fa
+ ---> Removed intermediate container 1acee25529fa
+ ---> 5e3fcbf4b192
+Step 9/10 : CMD ["node", "server.js"]
+ ---> Running in 22aad579d97e
+ ---> Removed intermediate container 22aad579d97e
+ ---> 8f71fbdfa0c8
+Step 10/10 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in f554d21b9aa9
+ ---> Removed intermediate container f554d21b9aa9
+ ---> 8a8af57f6e58
+Successfully built 8a8af57f6e58
+Successfully tagged actividad3-api:secure
+ Image actividad3-api:secure Built 
+ Image actividad3-api:secure Built 

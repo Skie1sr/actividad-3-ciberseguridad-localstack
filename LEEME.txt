@@ -1,0 +1,65 @@
+ACTIVIDAD 3 - LABORATORIO DE SEGURIDAD LOCAL
+
+Entregables
+- Reporte Word y PDF: procedimiento, resultados, capturas y limitaciones.
+- Este paquete: código completo y salidas de las herramientas.
+
+Requisitos
+Docker con Docker Compose, Python 3 e internet. El laboratorio se probó en ARM64.
+El escaneo de imágenes fuerza linux/arm64 para conservar la arquitectura del informe.
+En otra arquitectura los resultados de la API compilada pueden variar.
+
+Ejecutar desde esta carpeta
+  python3 init_env.py
+  bash run_lab.sh
+
+La primera ejecución descarga las imágenes y la base de vulnerabilidades.
+Los conteos pueden cambiar con nuevas etiquetas, paquetes y bases de Trivy.
+Las huellas de las imágenes originales están en evidence/image-digests.txt
+y los metadatos de cada escaneo en trivy/*.json.
+No se incluye el binario de Compose. Usa el complemento docker compose oficial.
+
+Componentes y puertos locales
+- LocalStack Community 4.14.0: 127.0.0.1:4566
+- API Express JWT: 127.0.0.1:3008
+- Proxy y API de ZAP: 127.0.0.1:8089
+- Terraform utiliza exclusivamente http://localstack:4566 y credenciales test.
+- api/Dockerfile.node14 y Dockerfile.node18 son las variantes educativas obsoletas.
+- api/Dockerfile es la variante final que se construyó y escaneó.
+
+La versión Community permite ejecutar este laboratorio sin usar la cuenta ni
+el token personal de LocalStack. No se utilizó una cuenta de AWS.
+
+Evidencia importante
+La configuración AES256 y los cuatro controles de bloqueo se guardaron, pero
+GetBucketPolicyStatus devuelve NotImplemented en esta edición y una lectura
+anónima devolvió HTTP 200. Esto no demuestra privacidad efectiva ni cifrado
+físico de archivos en disco. No usar el emulador como servicio de almacenamiento
+seguro. La fase debe repetirse con enforcement compatible si se exige paridad IAM.
+
+Los tests de JWT pasan por ZAP. No ejecutar run_api_tests.py mientras un escaneo
+autenticado esté insertando una cabecera de administrador mediante Replacer.
+El script de escaneo retira esa regla al finalizar correctamente.
+
+Secretos
+init_env.py genera .env con secretos locales. No se incluyen en este paquete.
+No usar estas cuentas simuladas ni este login de práctica en producción.
+No se incluyeron tokens, sesiones de ZAP, imágenes tar ni estado de Terraform.
+
+Detener solamente este laboratorio
+  docker compose stop
+Eliminar los contenedores de este laboratorio, cuando ya no se necesiten
+  docker compose down
+No ejecutar limpiezas globales de Docker.
+
+La configuración S3 es volátil en esta edición; recrear LocalStack elimina los
+recursos emulados. El código Terraform permite volver a crearlos.
+
+ACTUALIZACIÓN CON RÚBRICA
+Se añadieron IAM y STS al servicio LocalStack, tres políticas JSON, un rol
+con permiso de lectura sobre evidencia.txt, ejemplo de AssumeRole y pruebas
+GetObject/PutObject. Community no rechazó la escritura indebida; no se
+acredita enforcement. Se adjunta diagrama editable draw.io y exportación PNG/SVG.
+Dockerfile.node18 ahora usa node:18-alpine corregida: 0 críticas, pero conserva
+6 altas, 7 medias y 3 bajas en el análisis registrado. La imagen recomendada
+Node 24 se mantiene separada y registró 0 vulnerabilidades.

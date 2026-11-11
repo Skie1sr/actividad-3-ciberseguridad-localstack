@@ -1,0 +1,41 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenegarAnonimos",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::actividad3-seguro-2024",
+        "arn:aws:s3:::actividad3-seguro-2024/*"
+      ],
+      "Condition": {
+        "Null": {
+          "aws:PrincipalArn": "true"
+        }
+      }
+    },
+    {
+      "Sid": "DenegarLecturaFueraDelRol",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::actividad3-seguro-2024/*",
+      "Condition": {
+        "ArnNotEquals": {
+          "aws:PrincipalArn": "arn:aws:iam::000000000000:role/Actividad3LecturaS3"
+        }
+      }
+    },
+    {
+      "Sid": "PermitirLecturaDelRolDefinido",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::000000000000:role/Actividad3LecturaS3"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::actividad3-seguro-2024/evidencia.txt"
+    }
+  ]
+}

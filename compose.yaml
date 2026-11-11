@@ -1,0 +1,68 @@
+name: actividad3-seguridad
+services:
+  localstack:
+    image: localstack/localstack:4.14.0
+    ports:
+      - "127.0.0.1:4566:4566"
+    environment:
+      SERVICES: s3,iam,sts
+      AWS_DEFAULT_REGION: us-east-1
+      DEBUG: "0"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:4566/_localstack/health"]
+      interval: 5s
+      timeout: 4s
+      retries: 30
+  terraform:
+    image: hashicorp/terraform:1.14
+    profiles: [tools]
+    working_dir: /workspace
+    volumes:
+      - ./terraform:/workspace
+      - ./iam:/iam:ro
+      - ./tmp-terraform:/tmp
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: us-east-1
+    depends_on:
+      localstack:
+        condition: service_healthy
+  api:
+    build: ./api
+    image: actividad3-api:secure
+    ports:
+      - "127.0.0.1:3008:3000"
+    env_file: .env
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+  trivy:
+    image: aquasec/trivy:latest
+    profiles: [tools]
+    volumes:
+      - ./trivy:/reports
+      - ./cache-trivy:/root/.cache/trivy
+      - ./tmp-trivy:/tmp
+    entrypoint: [trivy]
+  zap:
+    image: zaproxy/zap-stable:latest
+    profiles: [tools]
+    volumes:
+      - ./zap:/zap/wrk
+      - ./zap-home:/home/zap/.ZAP
+      - ./tmp-zap:/tmp
+    ports:
+      - "127.0.0.1:8089:8080"
+    environment:
+      _JAVA_OPTIONS: "-Xmx384m"
+    command: ["zap.sh", "-daemon", "-host", "0.0.0.0", "-port", "8080", "-config", "api.key=${ZAP_API_KEY}", "-config", "api.addrs.addr.name=.*", "-config", "api.addrs.addr.regex=true", "-config", "scanner.maxRuleDurationInMins=1", "-config", "scanner.maxScanDurationInMins=4"]
+    depends_on:
+      api:
+        condition: service_healthy

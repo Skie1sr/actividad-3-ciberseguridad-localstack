@@ -1,0 +1,17 @@
+ Container actividad3-seguridad-localstack-1 Running 
+ Container actividad3-seguridad-localstack-1 Waiting 
+ Container actividad3-seguridad-localstack-1 Healthy 
+ Container actividad3-seguridad-terraform-run-af8c13f2ed00 Creating 
+ Container actividad3-seguridad-terraform-run-af8c13f2ed00 Created 
+aws_iam_role.reader: Refreshing state... [id=Actividad3LecturaS3]
+aws_s3_bucket.secure_bucket: Refreshing state... [id=actividad3-seguro-2024]
+aws_iam_role_policy.reader: Refreshing state... [id=Actividad3LecturaS3:LeerSoloEvidencia]
+aws_s3_bucket_ownership_controls.secure: Refreshing state... [id=actividad3-seguro-2024]
+aws_s3_bucket_public_access_block.secure: Refreshing state... [id=actividad3-seguro-2024]
+aws_s3_bucket_server_side_encryption_configuration.secure: Refreshing state... [id=actividad3-seguro-2024]
+aws_s3_bucket_policy.role_only: Refreshing state... [id=actividad3-seguro-2024]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.

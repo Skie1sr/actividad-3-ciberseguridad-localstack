@@ -1,0 +1,72 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            BuildKit is currently disabled; enable it by removing the DOCKER_BUILDKIT=0
+            environment-variable.
+
+Sending build context to Docker daemon  45.57kB
+Step 1/9 : FROM node:18-alpine
+18-alpine: Pulling from library/node
+02bb84e9f341: Pulling fs layer
+6e771e15690e: Pulling fs layer
+d84c815451ac: Pulling fs layer
+8bfa36aa66ce: Pulling fs layer
+02bb84e9f341: Download complete
+6e5ddd2afd3b: Download complete
+8bfa36aa66ce: Download complete
+3e73d02a655b: Download complete
+6e771e15690e: Download complete
+6e771e15690e: Pull complete
+d84c815451ac: Download complete
+d84c815451ac: Pull complete
+02bb84e9f341: Pull complete
+8bfa36aa66ce: Pull complete
+Digest: sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+Status: Downloaded newer image for node:18-alpine
+ ---> 8d6421d663b4
+Step 2/9 : ENV NODE_ENV=production
+ ---> Running in 4c0e596d9fc3
+ ---> Removed intermediate container 4c0e596d9fc3
+ ---> da7d161048b4
+Step 3/9 : WORKDIR /app
+ ---> Running in a1096cdef40d
+ ---> Removed intermediate container a1096cdef40d
+ ---> f119208a02d6
+Step 4/9 : COPY package*.json ./
+ ---> b18d0b398ea8
+Step 5/9 : RUN npm ci --omit=dev && npm cache clean --force     && apk upgrade --no-cache libcrypto3 libssl3     && rm -rf /usr/local/lib/node_modules/npm        /usr/local/bin/npm /usr/local/bin/npx
+ ---> Running in 6a9afcdc3db0
+
+added 83 packages, and audited 84 packages in 2s
+
+19 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[91mnpm notice
+npm notice New major version of npm available! 10.8.2 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+[0m[91mnpm warn using --force Recommended protections disabled.
+[0mfetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/aarch64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/aarch64/APKINDEX.tar.gz
+(1/2) Upgrading libcrypto3 (3.3.3-r0 -> 3.3.7-r2)
+(2/2) Upgrading libssl3 (3.3.3-r0 -> 3.3.7-r2)
+OK: 10 MiB in 17 packages
+ ---> Removed intermediate container 6a9afcdc3db0
+ ---> 76d22d266574
+Step 6/9 : COPY --chown=node:node server.js ./
+ ---> 9ff1e06634eb
+Step 7/9 : USER node
+ ---> Running in 5536d7e69bdf
+ ---> Removed intermediate container 5536d7e69bdf
+ ---> 34fc28b0b3ef
+Step 8/9 : EXPOSE 3000
+ ---> Running in 32dfc8e08c53
+ ---> Removed intermediate container 32dfc8e08c53
+ ---> ba15de730867
+Step 9/9 : CMD ["node", "server.js"]
+ ---> Running in b45e977e5f27
+ ---> Removed intermediate container b45e977e5f27
+ ---> 9bc0592a860b
+Successfully built 9bc0592a860b
+Successfully tagged actividad3-api:node18

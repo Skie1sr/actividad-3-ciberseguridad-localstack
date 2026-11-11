@@ -1,0 +1,140 @@
+{
+  "fecha_utc": "2026-11-10T23:06:16Z",
+  "transporte": "HTTP a través del proxy OWASP ZAP en 127.0.0.1:8089",
+  "total": 13,
+  "correctas": 13,
+  "pruebas": [
+    {
+      "caso": "Health público",
+      "ruta": "/health",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "PASS",
+      "respuesta": {
+        "status": "ok"
+      }
+    },
+    {
+      "caso": "Sin token",
+      "ruta": "/api/admin",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Bearer token required"
+      }
+    },
+    {
+      "caso": "Token mal formado",
+      "ruta": "/api/admin",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Invalid or expired token"
+      }
+    },
+    {
+      "caso": "Firma alterada",
+      "ruta": "/api/admin",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Invalid or expired token"
+      }
+    },
+    {
+      "caso": "Token vencido",
+      "ruta": "/api/admin",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Invalid or expired token"
+      }
+    },
+    {
+      "caso": "Emisor incorrecto",
+      "ruta": "/api/admin",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Invalid or expired token"
+      }
+    },
+    {
+      "caso": "Audiencia incorrecta",
+      "ruta": "/api/admin",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Invalid or expired token"
+      }
+    },
+    {
+      "caso": "Algoritmo none",
+      "ruta": "/api/admin",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Invalid or expired token"
+      }
+    },
+    {
+      "caso": "Usuario sin permiso admin",
+      "ruta": "/api/admin",
+      "esperado": 403,
+      "obtenido": 403,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Administrator role required"
+      }
+    },
+    {
+      "caso": "Usuario con perfil permitido",
+      "ruta": "/api/profile",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "PASS",
+      "respuesta": {
+        "user": "alumno",
+        "role": "user"
+      }
+    },
+    {
+      "caso": "Administrador válido",
+      "ruta": "/api/admin",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "PASS",
+      "respuesta": {
+        "message": "Authorized administrative access",
+        "user": "admin"
+      }
+    },
+    {
+      "caso": "Escalamiento por role en login",
+      "ruta": "/api/admin",
+      "esperado": 403,
+      "obtenido": 403,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Administrator role required"
+      }
+    },
+    {
+      "caso": "Contraseña incorrecta",
+      "ruta": "/auth/login",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "PASS",
+      "respuesta": {
+        "error": "Invalid credentials"
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "fecha_utc": "2026-11-10T23:05:45Z",
+  "version": "2.17.0",
+  "target": "http://api:3000",
+  "scan_id": "0",
+  "active_progress": "100",
+  "alerts": 5,
+  "risk_counts": {
+    "Informational": 5
+  },
+  "rules": {
+    "10111": {
+      "name": "Authentication Request Identified",
+      "risk": "Informational",
+      "confidence": "High",
+      "solution": "This is an informational alert rather than a vulnerability and so there is nothing to fix."
+    },
+    "10112": {
+      "name": "Session Management Response Identified",
+      "risk": "Informational",
+      "confidence": "Medium",
+      "solution": "This is an informational alert rather than a vulnerability and so there is nothing to fix."
+    }
+  },
+  "urls": [
+    "http://api:3000",
+    "http://api:3000/api",
+    "http://api:3000/api/admin",
+    "http://api:3000/api/profile",
+    "http://api:3000/auth",
+    "http://api:3000/auth/login",
+    "http://api:3000/health"
+  ]
+}

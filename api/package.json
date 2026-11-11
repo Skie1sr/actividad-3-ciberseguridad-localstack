@@ -1,0 +1,7 @@
+{
+  "name": "actividad3-api-segura",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"start": "node server.js"},
+  "dependencies": {"express": "^4.21.2", "jsonwebtoken": "^9.0.2", "helmet": "^8.1.0"}
+}

@@ -1,0 +1,79 @@
+{
+  "bucket": "actividad3-seguro-2024",
+  "endpoint": "http://127.0.0.1:4566",
+  "fecha_utc": "2026-11-10T23:20:04Z",
+  "policy_status": {
+    "error": "An error occurred (InternalFailure) when calling the GetBucketPolicyStatus operation: The API for service s3 is either not included in your current license plan or has not yet been emulated by LocalStack.",
+    "exit_code": 255
+  },
+  "bucket_policy": {
+    "Policy": "{\"Statement\":[{\"Action\":\"s3:*\",\"Condition\":{\"Null\":{\"aws:PrincipalArn\":\"true\"}},\"Effect\":\"Deny\",\"Principal\":\"*\",\"Resource\":[\"arn:aws:s3:::actividad3-seguro-2024\",\"arn:aws:s3:::actividad3-seguro-2024/*\"],\"Sid\":\"DenegarAnonimos\"},{\"Action\":\"s3:GetObject\",\"Condition\":{\"ArnNotEquals\":{\"aws:PrincipalArn\":\"arn:aws:iam::000000000000:role/Actividad3LecturaS3\"}},\"Effect\":\"Deny\",\"Principal\":\"*\",\"Resource\":\"arn:aws:s3:::actividad3-seguro-2024/*\",\"Sid\":\"DenegarLecturaFueraDelRol\"},{\"Action\":\"s3:GetObject\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::000000000000:role/Actividad3LecturaS3\"},\"Resource\":\"arn:aws:s3:::actividad3-seguro-2024/evidencia.txt\",\"Sid\":\"PermitirLecturaDelRolDefinido\"}],\"Version\":\"2012-10-17\"}"
+  },
+  "public_access_block": {
+    "PublicAccessBlockConfiguration": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": true,
+      "RestrictPublicBuckets": true
+    }
+  },
+  "encryption": {
+    "ServerSideEncryptionConfiguration": {
+      "Rules": [
+        {
+          "ApplyServerSideEncryptionByDefault": {
+            "SSEAlgorithm": "AES256"
+          },
+          "BucketKeyEnabled": false
+        }
+      ]
+    }
+  },
+  "ownership": {
+    "OwnershipControls": {
+      "Rules": [
+        {
+          "ObjectOwnership": "BucketOwnerEnforced"
+        }
+      ]
+    }
+  },
+  "acl": {
+    "Owner": {
+      "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+    },
+    "Grants": [
+      {
+        "Grantee": {
+          "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a",
+          "Type": "CanonicalUser"
+        },
+        "Permission": "FULL_CONTROL"
+      }
+    ]
+  },
+  "put_object": {
+    "ETag": "\"70585eea5f3243cc9cd63dd2a6025e09\"",
+    "ChecksumCRC32": "s6o+4A==",
+    "ChecksumType": "FULL_OBJECT",
+    "ServerSideEncryption": "AES256"
+  },
+  "head_object": {
+    "AcceptRanges": "bytes",
+    "LastModified": "Tue, 10 Nov 2026 23:20:07 GMT",
+    "ContentLength": 46,
+    "ETag": "\"70585eea5f3243cc9cd63dd2a6025e09\"",
+    "ContentType": "binary/octet-stream",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {}
+  },
+  "anonymous_get_http": 200,
+  "checks": {
+    "bucket_no_publico_segun_policy_status": null,
+    "cuatro_bloqueos_activos": true,
+    "cifrado_AES256": true,
+    "objeto_AES256": true,
+    "propietario_forzado": true,
+    "lectura_anonima_rechazada": false
+  }
+}

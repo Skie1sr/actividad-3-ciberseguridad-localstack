@@ -1,0 +1,130 @@
+{
+  "fecha_utc": "2026-11-10T23:22:21.394882+00:00",
+  "arquitectura": "linux/arm64",
+  "criterio": "ocurrencias vulnerabilidad-paquete; no CVE únicos",
+  "resultados": [
+    {
+      "imagen": "node:14",
+      "total": 1452,
+      "CRITICAL": 23,
+      "HIGH": 568,
+      "MEDIUM": 735,
+      "LOW": 122,
+      "UNKNOWN": 4,
+      "unique_cves": 726,
+      "os": {
+        "Family": "debian",
+        "Name": "10.13",
+        "EOSL": true
+      },
+      "image_id": "sha256:b6e1f9016a807bec65d61745a2510b8c4b3e7a157d13c7e18a8b6b64742a511c",
+      "repo_digests": [
+        "node@sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa"
+      ]
+    },
+    {
+      "imagen": "node:18",
+      "total": 12309,
+      "CRITICAL": 228,
+      "HIGH": 2441,
+      "MEDIUM": 6814,
+      "LOW": 2720,
+      "UNKNOWN": 106,
+      "unique_cves": 7738,
+      "os": {
+        "Family": "debian",
+        "Name": "12.11"
+      },
+      "image_id": "sha256:b395f72f7f4064d53c99f7c4fa648ac1e740dde1eeb4d8a24f2ac07adcd1b92d",
+      "repo_digests": [
+        "node@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783"
+      ]
+    },
+    {
+      "imagen": "node:18-alpine",
+      "total": 139,
+      "CRITICAL": 3,
+      "HIGH": 43,
+      "MEDIUM": 55,
+      "LOW": 38,
+      "UNKNOWN": 0,
+      "unique_cves": 90,
+      "os": {
+        "Family": "alpine",
+        "Name": "3.21.3",
+        "EOSL": true
+      },
+      "image_id": "sha256:c5914b9dd279c0f596933e65906cb3c6d2da5aae71e863e819e9b963997b1c17",
+      "repo_digests": [
+        "node@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e"
+      ]
+    },
+    {
+      "imagen": "API Node 18 corregida",
+      "total": 16,
+      "CRITICAL": 0,
+      "HIGH": 6,
+      "MEDIUM": 7,
+      "LOW": 3,
+      "UNKNOWN": 0,
+      "unique_cves": 9,
+      "os": {
+        "Family": "alpine",
+        "Name": "3.21.3",
+        "EOSL": true
+      },
+      "image_id": "sha256:2e2d3345cde8a43e9c8cf5a3c2292a79c24a8843519f43a7107d9066ff7beb9e",
+      "repo_digests": []
+    },
+    {
+      "imagen": "node:24-alpine",
+      "total": 20,
+      "CRITICAL": 0,
+      "HIGH": 6,
+      "MEDIUM": 13,
+      "LOW": 1,
+      "UNKNOWN": 0,
+      "unique_cves": 20,
+      "os": {
+        "Family": "alpine",
+        "Name": "3.24.4"
+      },
+      "image_id": "sha256:84b57963e69068cb6dd219c56f8939e831c88ba5a251ab05736f5ecb48690e81",
+      "repo_digests": [
+        "node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8"
+      ]
+    },
+    {
+      "imagen": "API antes de endurecer",
+      "total": 20,
+      "CRITICAL": 0,
+      "HIGH": 6,
+      "MEDIUM": 13,
+      "LOW": 1,
+      "UNKNOWN": 0,
+      "unique_cves": 20,
+      "os": {
+        "Family": "alpine",
+        "Name": "3.24.4"
+      },
+      "image_id": "sha256:0f1fa1f37299289f465c2d26c799b1e13e4116a12d301467caaa3b90eaaefcbf",
+      "repo_digests": []
+    },
+    {
+      "imagen": "API final Node 24",
+      "total": 0,
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "UNKNOWN": 0,
+      "unique_cves": 0,
+      "os": {
+        "Family": "alpine",
+        "Name": "3.24.4"
+      },
+      "image_id": "sha256:87947ca65e4ecd4ad658399b0f94bb154455a31f5fc061884f6728f1e5b002a9",
+      "repo_digests": []
+    }
+  ]
+}
